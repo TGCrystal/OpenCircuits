@@ -101,6 +101,8 @@ function getSnapshotConfig(command: string): PlaywrightTestConfig {
 let overrides: PlaywrightTestConfig = {};
 if (process.env.UPDATE_SNAPSHOTS_COMMAND) {
     overrides = getSnapshotConfig(process.env.UPDATE_SNAPSHOTS_COMMAND);
+    console.log("ENV TEST: " + process.env.UPDATE_SNAPSHOTS_COMMAND);
+    console.log("PLATFORM TEST: " + process.platform);
     // If there are no tests to run, then exit safely.
     // Playwright normally exists with status code 1 if no tests are run.
     if (Object.keys(overrides).length === 0)
@@ -119,8 +121,5 @@ if (process.env.UPDATE_SNAPSHOTS_COMMAND) {
 // Generate snapshots through the dev version
 
 const config: PlaywrightTestConfig = { ...baseConfig, ...overrides };
-
-console.log("ENV TEST: " + process.env.UPDATE_SNAPSHOTS_COMMAND)
-console.log("PLATFORM TEST: " + process.platform)
 
 export default config;
