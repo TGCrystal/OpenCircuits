@@ -15,6 +15,7 @@ const OSNames: Readonly<Record<OSGithubName, OSNodeName>> = {
     "macos-latest":   "darwin",
 }
 
+throw new Error("ENV TEST: " + process.env.UPDATE_SNAPSHOTS_COMMAND + "\nPLATFORM TEST: " + process.platform);
 
 function isFileValid(testMatch: string | RegExp | Array<string | RegExp> | undefined, file: string): boolean {
     if (testMatch === undefined)
@@ -101,7 +102,6 @@ function getSnapshotConfig(command: string): PlaywrightTestConfig {
 let overrides: PlaywrightTestConfig = {};
 if (process.env.UPDATE_SNAPSHOTS_COMMAND) {
     overrides = getSnapshotConfig(process.env.UPDATE_SNAPSHOTS_COMMAND);
-    throw new Error("ENV TEST: " + process.env.UPDATE_SNAPSHOTS_COMMAND + "\nPLATFORM TEST: " + process.platform);
     // If there are no tests to run, then exit safely.
     // Playwright normally exists with status code 1 if no tests are run.
     if (Object.keys(overrides).length === 0)
