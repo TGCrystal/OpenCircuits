@@ -120,4 +120,7 @@ if (process.env.UPDATE_SNAPSHOTS_COMMAND) {
 
 const config: PlaywrightTestConfig = { ...baseConfig, ...overrides };
 
+console.log("ENV TEST: " + process.env.UPDATE_SNAPSHOTS_COMMAND)
+console.log("PLATFORM TEST: " + process.platform)
+
 export default config;
