@@ -57,9 +57,9 @@ function getSnapshotConfig(command: string): PlaywrightTestConfig {
     if (args[0] !== "/update-snapshots") // Correct command usage
         return {};
 
-    // const oses = args[1].split(",");
-    // if (!oses.some((os) => (process.platform === OSNames[os]))) // Run on this OS
-        // return {};
+    const oses = args[1].split(",");
+    if (!oses.some((os) => (process.platform === OSNames[os]))) // Run on this OS
+        return {};
 
     const digitalProjects = DevProjects.digital.map((project) => modifyProject(project, 3000, args.slice(2)));
     const landingProjects = DevProjects.landing.map((project) => modifyProject(project, 3001, args.slice(2)));
